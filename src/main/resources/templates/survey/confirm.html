@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title th:text="${title}">Insert title here</title>
+	<link rel="icon" href="../../../../favicon.ico">
+
+    <title>Starter Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="starter-template.css"  th:href="@{/css/starter-template.css}" rel="stylesheet">
+</head>
+<body>
+  <div th:replace="~{block/header_boot::headerA_boot}"></div>
+    <main role="main" class="container">
+
+      <div class="starter-template">
+        <h1 th:text="${title}">Bootstrap starter template</h1>
+      </div>
+      
+<p>入力内容をご確認ください</p>
+<div th:object="${surveyForm}">
+
+<div class="mb-5">
+　<p>年齢　　:　<span th:text="*{age}"></span>歳</p>
+　<p>満足度　:　<span th:text="*{satisfaction}"></span></p>
+　<p>コメント:　<span th:text="*{comment}"></span></p>
+</div>
+<form  class="mb-2"　method="post" action="#" th:action="@{/survey/form}">
+	<input type="hidden" name="age" th:value="*{age}">
+	<input type="hidden" name="satisfaction" th:value="*{satisfaction}">
+	<input type="hidden" name="comment" th:value="*{comment}">
+	<input type="submit" class="btn btn-primary" value="戻る">
+</form>
+<form method="post" action="#" th:action="@{/survey/complete}">
+	<input type="hidden" name="age" th:value="*{age}">
+	<input type="hidden" name="satisfaction" th:value="*{satisfaction}">
+	<input type="hidden" name="comment" th:value="*{comment}">
+	<input type="submit" class="btn btn-primary" value="送信">
+</form>
+</div>
+	</main><!-- /.container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="@{/js/jquery-slim.min.js}"><\/script>')</script>
+    <script src="../../assets/js/vendor/popper.min.js"  th:src="@{/js/popper.min.js}"></script>
+    <script src="../../dist/js/bootstrap.min.js"  th:src="@{/js/bootstrap.min.js}"></script>
+  </body>
+</html>
